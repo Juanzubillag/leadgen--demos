@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old Style Barber Only For Men | Madrid · Estilo con oficio</title>
+<meta name="description" content="Corte, barba y afeitado clásico">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111827">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Old Style Barber Only For Men | Madrid">
+<meta property="og:description" content="Corte, barba y afeitado clásico">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:wght@600;700&amp;family=Karla:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------------------------------
+   Tokens. Los tres colores salen del brief de cada negocio, asi que no se
+   puede confiar en que tengan buen contraste: --shell y --accent-strong los
+   mezclan hacia el negro para garantizar texto blanco legible encima sea cual
+   sea el hex que venga. La primera declaracion de cada par es el fallback
+   para navegadores sin color-mix.
+   Tipografia, radio y densidad los fija el carril de tono (ver cabecera).
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: light dark;
+
+  --brand: #1f2937;
+  --brand-deep: #111827;
+  --accent: #d97706;
+
+  --shell: #111827;
+  --shell: color-mix(in oklab, #111827 82%, #0a0b0e);
+  --accent-strong: #111827;
+  --accent-strong: color-mix(in oklab, #d97706 74%, #14110b);
+
+  --ink: #15171c;
+  --ink-soft: #5a616e;
+  --surface: #ffffff;
+  --surface-2: #f5f5f3;
+  --surface-3: #ebebe7;
+  --line: rgba(18, 20, 26, .10);
+  --line-strong: rgba(18, 20, 26, .18);
+  --on-shell: rgba(255, 255, 255, .80);
+  --on-shell-dim: rgba(255, 255, 255, .58);
+
+  --font-display: &#39;Petrona&#39;, &#39;Iowan Old Style&#39;, Georgia, &#39;Times New Roman&#39;, serif;
+  --font-body: &#39;Karla&#39;, ui-sans-serif, system-ui, -apple-system, &#39;Segoe UI&#39;, Roboto, sans-serif;
+  --display-weight: 700;
+  --display-tracking: -.018em;
+  --display-lh: 1.06;
+  --h2: clamp(30px, 4.4vw, 47px);
+
+  --r: 16px;
+  --shadow: 0 1px 2px rgba(18,20,26,.05), 0 14px 32px -16px rgba(18,20,26,.26);
+  --shadow-lift: 0 2px 4px rgba(18,20,26,.06), 0 28px 56px -24px rgba(18,20,26,.34);
+  --maxw: 1180px;
+  --gutter: 20px;
+
+  /* Curvas propias: las de serie de CSS son demasiado blandas y hacen que
+     todo parezca que llega tarde. */
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #eceef2;
+    --ink-soft: #a0a7b4;
+    --surface: #101217;
+    --surface-2: #161920;
+    --surface-3: #1e222b;
+    --line: rgba(255, 255, 255, .12);
+    --line-strong: rgba(255, 255, 255, .22);
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 32px -16px rgba(0,0,0,.62);
+    --shadow-lift: 0 2px 4px rgba(0,0,0,.45), 0 28px 56px -24px rgba(0,0,0,.7);
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  /* La barra de desplazamiento tambien es parte de la pagina. */
+  scrollbar-color: var(--line-strong) transparent;
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--surface);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection {
+  background: var(--accent-strong);
+  color: #fff;
+}
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-lh);
+  text-wrap: balance;
+  margin: 0;
+}
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-underline-offset: .18em;
+  text-decoration-thickness: from-font;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section {
+  padding-block: clamp(68px, 9.5vw, 124px);
+  /* La cabecera es pegajosa: sin esto un enlace del menu deja el titulo justo
+     debajo de ella. */
+  scroll-margin-top: 84px;
+}
+.lede {
+  font-size: clamp(17px, 1.6vw, 20px);
+  color: var(--ink-soft);
+  max-width: 68ch;
+}
+.h2 {
+  font-size: var(--h2);
+}
+.rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--line);
+}
+
+/* --- Botones ------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  white-space: nowrap;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+  text-decoration: none;
+  padding: 15px 27px;
+  border: 1px solid transparent;
+  transition: transform 140ms var(--ease-out), filter 140ms var(--ease-out),
+              background-color 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
+}
+.btn:active {
+  transform: scale(.97);
+}
+.btn-primary {
+  background: var(--accent-strong);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(18,20,26,.18), 0 10px 22px -12px var(--accent-strong);
+}
+.btn-ghost {
+  border-color: rgba(255,255,255,.34);
+  color: #fff;
+}
+.btn-wa {
+  background: #1da851;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(18,20,26,.18), 0 10px 22px -12px #1da851;
+}
+.btn-sm {
+  padding: 12px 21px;
+  font-size: 14px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    filter: brightness(1.12);
+  }
+  .btn-ghost:hover {
+    background: rgba(255,255,255,.14);
+  }
+  .btn-wa:hover {
+    filter: brightness(1.1);
+  }
+}
+:where(a, button):focus-visible {
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.skip {
+  position: absolute;
+  left: -9999px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 12px 18px;
+  z-index: 100;
+}
+.skip:focus {
+  left: 12px;
+  top: 12px;
+}
+
+/* --- Nav (una sola linea, <= 72px) --------------------------------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brandmark {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 20px;
+  letter-spacing: var(--display-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 44vw;
+}
+.nav-links {
+  display: none;
+  gap: 28px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.nav-links a {
+  text-decoration: none;
+  transition: color 140ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-links a:hover {
+    color: var(--accent-strong);
+  }
+}
+@media (min-width: 900px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+/* --- Hero: split asimetrico, la foto sangra por la derecha ---------------- */
+.hero {
+  position: relative;
+  background: var(--shell);
+  color: #fff;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(900px 480px at 12% 8%, color-mix(in oklab, var(--brand) 42%, transparent), transparent 70%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: relative;
+  display: grid;
+  gap: clamp(32px, 5vw, 60px);
+  padding-block: clamp(56px, 7.5vw, 104px);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr .95fr;
+  }
+}
+.hero h1 {
+  font-size: var(--h1);
+  margin-block: 20px 18px;
+  max-width: 19ch;
+}
+.hero-sub {
+  color: var(--on-shell);
+  font-size: clamp(16px, 1.7vw, 19px);
+  max-width: 46ch;
+  margin-bottom: 32px;
+}
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 15px 7px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.20);
+  font-size: 14px;
+  font-weight: 600;
+}
+.stars {
+  display: inline-flex;
+  gap: 1px;
+  color: var(--accent);
+}
+.hero-media {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 30px 60px -28px rgba(0,0,0,.65);
+}
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (min-width: 1100px) {
+  .hero-media {
+    margin-right: calc((100vw - var(--maxw)) / -2 - var(--gutter));
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+/* --- Franja de confianza: datos en linea, separados por filetes ---------- */
+.trust {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+.trust-inner {
+  display: grid;
+  gap: 0;
+  padding-block: 8px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .trust-inner {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  }
+}
+.trust-item {
+  padding: 20px 4px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+}
+.trust-item:first-child {
+  border-top: 0;
+}
+@media (min-width: 720px) {
+  .trust-item {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+    padding-inline: 26px;
+  }
+  .trust-item:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+.trust-item svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--accent-strong);
+}
+.trust-v {
+  font-size: 15.5px;
+  font-weight: 600;
+}
+
+/* --- Sobre nosotros: editorial con imagen desplazada ---------------------
+   Dos composiciones segun haya foto o no. Sin foto, el titular se va a una
+   columna estrecha y la prosa a la ancha: la mitad de los leads no tienen
+   imagen de "sobre nosotros", y en una sola columna esa seccion dejaba medio
+   renglon vacio a la derecha que se leia como un fallo de maquetacion. */
+.about-grid {
+  display: grid;
+  gap: 20px;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .about-grid {
+    grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+    column-gap: clamp(32px, 5vw, 72px);
+  }
+  .about-grid.has-media {
+    grid-template-columns: 1.15fr .85fr;
+    column-gap: clamp(28px, 4vw, 56px);
+  }
+  .about-grid.has-media .h2 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .about-grid.has-media .lede {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .about-grid.has-media .about-media {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+.about-media {
+  border-radius: var(--r);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow);
+}
+@media (min-width: 900px) {
+  .about-media {
+    margin-top: 44px;
+  }
+}
+.about-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Servicios: bento asimetrico, el primero manda ----------------------- */
+.services {
+  background: var(--surface-2);
+}
+.svc-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 42px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) {
+  .svc-grid.multi {
+    grid-template-columns: 1.25fr 1fr;
+  }
+  .svc-lead {
+    grid-row: span var(--svc-span, 2);
+  }
+}
+.svc {
+  border-radius: var(--r);
+  padding: 27px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.svc h3 {
+  font-size: 21px;
+}
+.svc p {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+}
+/* La tarjeta grande abarca el alto de las pequeñas apiladas, asi que con tres
+   servicios le sobraba un palmo de vacio. Lo ocupa la llamada a la accion de
+   media pagina, que ademas evita que el visitante tenga que volver arriba o
+   llegar hasta el pie para pedir cita. */
+.svc-lead {
+  background: var(--shell);
+  border-color: transparent;
+  color: #fff;
+  padding: clamp(28px, 4vw, 42px);
+  min-height: 214px;
+}
+.svc-lead h3 {
+  font-size: clamp(26px, 3.3vw, 37px);
+}
+.svc-lead p {
+  color: var(--on-shell);
+  font-size: 16.5px;
+  max-width: 34ch;
+}
+.svc-cta {
+  margin-top: auto;
+  padding-top: 26px;
+}
+
+/* --- Galeria: mosaico con ritmo, la primera foto pesa mas ---------------- */
+/* El mosaico nunca debe dejar una celda vacia al final. En movil (2 columnas)
+   la ultima foto se ensancha si el numero es impar; en escritorio solo se
+   aplica el destacado 2x2 cuando hay exactamente 5 fotos, que es el unico
+   recuento que rellena la rejilla de 4 columnas sin agujeros. */
+.gal {
+  display: grid;
+  gap: 12px;
+  margin-top: 42px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 150px;
+}
+.gal > :last-child:nth-child(odd) {
+  grid-column: span 2;
+}
+@media (min-width: 760px) {
+  .gal {
+    grid-template-columns: repeat(var(--cols, 4), 1fr);
+    grid-auto-rows: var(--row-h, 180px);
+  }
+  .gal > :last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+  .gal.feat > :first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+.gal figure {
+  margin: 0;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--surface-3);
+}
+.gal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .gal figure:hover img {
+    transform: scale(1.045);
+  }
+}
+
+/* --- Reseñas: una destacada grande, el resto apiladas -------------------- */
+.reviews {
+  background: var(--shell);
+  color: #fff;
+}
+.rev-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 42px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 880px) {
+  .rev-grid.multi {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: start;
+  }
+}
+.rev-stack {
+  display: grid;
+  gap: 16px;
+}
+.rev {
+  background: rgba(255,255,255,.07);
+  border-radius: var(--r);
+  padding: 27px;
+  margin: 0;
+}
+.rev p {
+  color: rgba(255,255,255,.93);
+}
+.rev-lead {
+  padding: clamp(28px, 4vw, 44px);
+}
+.rev-lead p {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: clamp(21px, 2.8vw, 30px);
+  line-height: 1.3;
+  letter-spacing: var(--display-tracking);
+}
+.rev-src {
+  margin-top: 16px;
+  font-size: 13.5px;
+  color: var(--on-shell-dim);
+}
+
+/* --- Contacto: ficha superpuesta sobre el mapa ---------------------------
+   Con fondo propio: la ficha es blanca, asi que sobre una seccion blanca el
+   espacio entre la galeria y ella se leia como un hueco vacio en vez de como
+   el principio de una seccion nueva. */
+.contact {
+  background: var(--surface-2);
+  border-top: 1px solid var(--line);
+}
+.contact-shell {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  margin-top: 38px;
+}
+@media (min-width: 940px) {
+  .contact-shell {
+    grid-template-columns: 1fr 1.25fr;
+    align-items: center;
+    gap: 0;
+  }
+}
+.contact-card {
+  background: var(--surface);
+  border-radius: var(--r);
+  padding: clamp(26px, 3.4vw, 40px);
+  box-shadow: var(--shadow-lift);
+  z-index: 2;
+}
+@media (min-width: 940px) {
+  .contact-card {
+    margin-right: -48px;
+  }
+}
+.info {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+.info li {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  font-size: 16px;
+}
+.info svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--accent-strong);
+}
+.info a {
+  text-decoration: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .info a:hover {
+    text-decoration: underline;
+  }
+}
+.hours {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.map {
+  width: 100%;
+  height: clamp(280px, 40vw, 430px);
+  border: 0;
+  border-radius: var(--r);
+  filter: saturate(.92);
+  /* El embed de Google tarda ~2s en pintar. Sin fondo, ese hueco es blanco y
+     parece una imagen rota tanto para un visitante como para el reviewer. */
+  background: var(--surface-3);
+}
+
+/* --- Footer -------------------------------------------------------------- */
+.foot {
+  background: var(--surface-2);
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 14px;
+  text-align: center;
+  padding-block: 32px;
+}
+
+/* --- Boton flotante de WhatsApp ----------------------------------------- */
+.wa-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 50;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: #1da851;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 26px rgba(0,0,0,.30);
+  transition: transform 160ms var(--ease-out);
+}
+.wa-float:active {
+  transform: scale(.94);
+}
+@media (hover: hover) and (pointer: fine) {
+  .wa-float:hover {
+    transform: scale(1.07);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Movimiento. Un solo momento con autoria: la entrada de la portada, donde el
+   titular, el subtitulo y los botones suben escalonados y la foto se abre
+   desde el centro. El resto de la pagina usa la misma entrada, mas corta y
+   aplicada a grupos, no a cada elemento.
+
+   Todo esto es MEJORA PROGRESIVA. Por defecto todo es visible; el estado
+   oculto solo se aplica bajo <html class="js">, es decir cuando hay
+   IntersectionObserver para volver a mostrarlo. Asi el contenido nunca
+   desaparece si el JS falla, si el navegador no lo ejecuta, o si algo captura
+   la pagina sin llegar a hacer scroll (que es justo lo que hace el reviewer
+   con Playwright).
+--------------------------------------------------------------------------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.js .reveal-media {
+  clip-path: inset(12% 0 12% 0);
+  transform: scale(1.05);
+  transition: clip-path 900ms var(--ease-out), transform 900ms var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+.js .reveal-media.in {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .js .reveal-media {
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+  .gal img, .btn, .wa-float, .nav-links a {
+    transition: none;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brandmark" href="#main">Old Style Barber Only For Men | Madrid</a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#about">Nosotros</a>
+      <a href="#services">Servicios</a>
+      <a href="#gallery">Galería</a>
+      
+      <a href="#contact">Contacto</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#contact">Reserva tu turno</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      
+      
+      <span class="rating-pill reveal" style="--d: 0ms">
+        <span class="stars" aria-hidden="true">
+          
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+          
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+          
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+          
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+          
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.6l2.9 5.9 6.5.95-4.7 4.6 1.1 6.45L12 17.45 6.2 20.5l1.1-6.45-4.7-4.6 6.5-.95z"/></svg>
+          
+        </span>
+        <span class="num">4.8 con 234 reseñas en Google</span>
+      </span>
+      
+      <h1 class="reveal" style="--h1: clamp(30px, 4.2vw, 44px); --d: 70ms">Barbería de toda la vida, resultados de otro nivel</h1>
+      <p class="hero-sub reveal" style="--d: 140ms">Corte, barba y afeitado clásico</p>
+      <div class="hero-cta reveal" style="--d: 200ms">
+        <a class="btn btn-primary" href="#contact">Reserva tu turno</a>
+        
+      </div>
+    </div>
+    
+    <div class="hero-media reveal-media" style="--d: 120ms">
+      <img src="assets/images/hero.jpg" alt="Interior de Old Style Barber Only For Men | Madrid" fetchpriority="high" width="1200" height="900">
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-inner">
+      
+      <div class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg>
+        <span class="trust-v">Valoración 4.8/5 en Google</span>
+      </div>
+      
+      <div class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg>
+        <span class="trust-v">Más de 234 clientes satisfechos</span>
+      </div>
+      
+      <div class="trust-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg>
+        <span class="trust-v">Retiro</span>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<section id="about" class="section">
+  <div class="wrap about-grid ">
+    <h2 class="h2 reveal">Sobre nosotros</h2>
+    <p class="lede reveal" style="--d: 70ms">Old Style Barber Only For Men | Madrid es un negocio de Barbería valorado con 4.8 estrellas por 234 clientes en Google.</p>
+    
+  </div>
+</section>
+
+
+<section id="services" class="section services">
+  <div class="wrap">
+    <h2 class="h2 reveal">Servicios</h2>
+    <div class="svc-grid multi reveal" style="--svc-span: 2; --d: 80ms">
+      
+      
+      <article class="svc svc-lead">
+        <h3>Corte clásico</h3>
+        <p>Cortes tradicionales y modernos a tijera y máquina.</p>
+        
+        <div class="svc-cta">
+          <a class="btn btn-primary btn-sm" href="#contact">Reserva tu turno</a>
+        </div>
+        
+      </article>
+      
+      
+      <article class="svc ">
+        <h3>Arreglo de barba</h3>
+        <p>Perfilado y cuidado de barba a navaja.</p>
+        
+      </article>
+      
+      
+      <article class="svc ">
+        <h3>Afeitado tradicional</h3>
+        <p>Afeitado clásico con toalla caliente.</p>
+        
+      </article>
+      
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="gallery" class="section">
+  <div class="wrap">
+    <h2 class="h2 reveal">El sitio por dentro</h2>
+    <div class="gal feat" style="--cols: 4; --row-h: 180px">
+      
+      <figure class="reveal" style="--d: 0ms">
+        <img src="assets/images/galeria_1.jpg" alt="Old Style Barber Only For Men | Madrid, foto 1" loading="lazy">
+      </figure>
+      
+      <figure class="reveal" style="--d: 55ms">
+        <img src="assets/images/galeria_2.jpg" alt="Old Style Barber Only For Men | Madrid, foto 2" loading="lazy">
+      </figure>
+      
+      <figure class="reveal" style="--d: 110ms">
+        <img src="assets/images/galeria_3.jpg" alt="Old Style Barber Only For Men | Madrid, foto 3" loading="lazy">
+      </figure>
+      
+      <figure class="reveal" style="--d: 165ms">
+        <img src="assets/images/galeria_4.jpg" alt="Old Style Barber Only For Men | Madrid, foto 4" loading="lazy">
+      </figure>
+      
+      <figure class="reveal" style="--d: 220ms">
+        <img src="assets/images/galeria_5.jpg" alt="Old Style Barber Only For Men | Madrid, foto 5" loading="lazy">
+      </figure>
+      
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="contact" class="section contact">
+  <div class="wrap">
+    <div class="contact-shell">
+      <div class="contact-card reveal">
+        <h2 class="h2">Visítanos</h2>
+        <ul class="info">
+          
+          <li>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <span>C. de Máiquez, 58, Retiro, 28009 Madrid</span>
+          </li>
+          
+          
+          <li>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.3 3h3l1.5 4.2-2 1.4a12.4 12.4 0 0 0 5.6 5.6l1.4-2 4.2 1.5v3a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.3 5.2 2 2 0 0 1 6.3 3z"/></svg>
+            <a class="num" href="tel:912328029">912328029</a>
+          </li>
+          
+          
+        </ul>
+        
+      </div>
+      
+      <iframe class="map" src="https://www.google.com/maps?q=C.%20de%20M%C3%A1iquez%2C%2058%2C%20Retiro%2C%2028009%20Madrid&amp;output=embed" loading="lazy" title="Mapa de Old Style Barber Only For Men | Madrid" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">Web de demostración generada para Old Style Barber Only For Men | Madrid. No es la web oficial del negocio.</div>
+</footer>
+
+
+
+<script>
+  // Solo ocultamos para animar si de verdad podemos volver a mostrar.
+  if ('IntersectionObserver' in window) {
+    var root = document.documentElement;
+    root.classList.add('js');
+    var items = document.querySelectorAll('.reveal, .reveal-media');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+
+    // Red de seguridad: si algo impide que el observador dispare (una captura
+    // automatica que nunca hace scroll, por ejemplo), se muestra todo igual.
+    setTimeout(function () {
+      items.forEach(function (el) { el.classList.add('in'); });
+    }, 1200);
+  }
+</script>
+
+</body>
+</html>
